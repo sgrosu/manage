@@ -7,12 +7,20 @@
       name: ansible
       state: present
       comment: Ansible
+      groups: wheel
+      append: yes
     become: yes
   - name: Copy user's SSH key to the machine
     authorized_key: 
       user: ansible
       state: present
       key: "{{ lookup('file', '/home/sgrosu/ansible_key/id_rsa.pub') }}"
+    become: yes
+  - name: copy key to remote machine
+    copy:
+      src: /home/sgrosu/ansible_key/id_rsa.pub
+      dest: /home/ansible/authorized_keys
+      mode: 0700
     become: yes
   - name: Ensure the user is sudoer with no password
     lineinfile:
