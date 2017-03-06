@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: sgrosu
+  tasks:
+  - name: ensure httpd is installed
+    yum:
+      name: httpd
+      state: present
+      become: True
+  - name: ensure http is up and running
+    service:
+      name: httpd
+      state: started
+      enabled: True
+    become: True

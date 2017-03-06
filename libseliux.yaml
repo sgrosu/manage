@@ -1,0 +1,10 @@
+---
+- hosts: centos
+  remote_user: sgrosu
+  #become_user: sgrosu
+  tasks:
+  - name: install libselinux
+    yum:
+      name: libselinux-python
+      state: present
+    become: yes
