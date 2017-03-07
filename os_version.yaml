@@ -5,3 +5,4 @@
   - name: Print OS Version
     debug:
       msg: "{{ ansible_distribution }} {{ ansible_distribution_version }}"
+    become: yes

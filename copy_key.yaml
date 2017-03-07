@@ -1,0 +1,9 @@
+---
+- hosts: centos
+  tasks:
+  - name: copy key to remote machine
+    copy:
+      src: /home/sgrosu/ansible_key/id_rsa.pub
+      dest: /home/ansible/authorized_keys
+      mode: 0700
+    become: yes
