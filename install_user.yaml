@@ -15,8 +15,8 @@
       user: ansible
       state: present
       key: "{{ lookup('file', '/home/sgrosu/ansible_key/id_rsa.pub') }}"
-      path: /home/ansible/.ssh/authorized_keys
-      manage_dir: False
+      #path: /home/ansible/.ssh/authorized_keys
+      #manage_dir: False
     become: yes
   - name: Ensure the user is sudoer with no password
     lineinfile:
