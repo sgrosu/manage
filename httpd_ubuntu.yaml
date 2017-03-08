@@ -1,0 +1,16 @@
+---
+- hosts: ubuntu
+  remote_user: ansible
+  #become_user: sgrosu
+  tasks:
+  - name: install apache2
+    apt:
+      name: apache2
+      state: present
+    become: yes
+  - name: start apache2
+    service:
+      name: apache2
+      state: started
+      enabled: True
+    become: yes
