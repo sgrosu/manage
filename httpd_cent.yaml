@@ -8,6 +8,18 @@
       name: httpd
       state: present
     become: yes
+  - name: install PHP packages
+    yum:
+      name: '{{ item }}'
+      state: present
+    become: yes
+    with_items:
+      - php56w
+      - php56w-common
+      - php56w-opcache
+      - php56w-cli
+      - php56w-mysql
+      - php56w-pear
   - name: start httpd
     service:
       name: httpd

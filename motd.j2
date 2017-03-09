@@ -1,0 +1,6 @@
+		This system is managed by Ansible
+Any change done can be overwritten by Ansible
+{# OS: "{{ ansible_distribution }} {{ ansible_distribution_version }}"
+Hostname: "{{ inventory_hostname }}" 
+eth0 address: "{{ ansible.eth0.ipv4.address }}" #}
+All connections are monitored and recorded - Disconnect immediately if not authorized!

@@ -1,0 +1,9 @@
+---
+- hosts: centos
+  remote_user: sgrosu
+  tasks:
+    - name: restart httpd
+      service:
+        name: httpd
+        state: restarted
+      become: yes
