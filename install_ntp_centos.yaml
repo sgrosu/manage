@@ -1,0 +1,21 @@
+---
+- hosts: centos
+  remote_user: sgrosu
+  tasks:
+  - name: make sure ntp service is present
+    yum:
+      name: ntp
+      state: present
+    become: yes
+  - name: set timezone to UTC
+    file:
+      src: /usr/share/zoneinfo/GMT
+      dest: /etc/localtime
+      state: link
+    become: yes
+  - name: ensure the NTP service is running and enabled
+    service:
+      name: ntpd
+      state: started
+      enabled: True
+    become: yes

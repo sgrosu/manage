@@ -1,0 +1,10 @@
+---
+- hosts: centos
+  remote_user: sgrosu
+  tasks:
+  - name: uninstall firewall service
+    yum:
+      name: firewalld
+      state: absent
+      #enabled: True
+    become: yes

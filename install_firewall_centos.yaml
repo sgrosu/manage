@@ -1,0 +1,23 @@
+---
+- hosts: centos
+  remote_user: sgrosu
+  tasks:
+  - name: install firewall service
+    yum:
+      name: firewalld
+      state: present
+      #enabled: True
+    become: yes
+  - name: ensure the firewall service is running
+    service:
+      name: firewalld
+      state: started
+      enabled: True
+    become: yes
+  - name: ssh can pass the firewall
+    firewalld:
+      service: ssh
+      state: enabled
+      permanent: True
+      immediate: True
+    become: yes
