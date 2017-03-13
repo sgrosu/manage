@@ -3,5 +3,8 @@
 	{% if ansible_eth0.active == True %}
 	<p> eth0 address is {{ ansible_eth0.ipv4.address }}. </p>
 	{% endif %}
-
-	
+	<ul>
+	{% for address in ansible_all_ipv4_addresses %}
+		<li> {{ address }} </>
+	{% endfor %}
+	</ul>
