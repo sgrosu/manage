@@ -1,0 +1,12 @@
+---
+- hosts: centos
+  remote_user: sgrosu
+  tasks:
+    - name: test php installation
+      template: 
+        src: templates/phpinfo.j2
+        dest: /var/www/html/index.php
+        owner: root
+        group: root
+        mode: 0644
+      become: yes

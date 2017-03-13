@@ -14,12 +14,12 @@
       state: present
     become: yes
     with_items:
-      - php56w
-      - php56w-common
-      - php56w-opcache
-      - php56w-cli
-      - php56w-mysql
-      - php56w-pear
+      - php
+      - php-common
+      - php-opcache
+      - php-cli
+      - php-mysql
+      - php-pear
   - name: start httpd
     service:
       name: httpd
