@@ -1,0 +1,25 @@
+---
+- hosts: ubuntu
+  tasks:
+  - name: add apt-key for webmin repository
+    apt_key:
+      url: 'http://www.webmin.com/jcameron-key.asc'
+      state: present
+    become: yes
+  - name: add webmin repository
+    apt_repository:
+      repo: deb http://download.webmin.com/download/repository sarge contrib
+      state: present
+    become: yes
+  - name: apt-get clean
+    shell: apt-get clean
+    become: yes
+  - name: apt-get update
+    shell: apt-get update
+    become: yes
+  - name: install webmin
+    apt:
+      name: webmin
+      state: present
+      #update_cache: yes
+    become: yes
