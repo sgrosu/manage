@@ -1,0 +1,37 @@
+---
+- hosts: centos
+  tasks:
+  - name: make sure kit directory exists
+    file:
+      path: /home/sgrosu/kit
+      state: directory
+      owner: sgrosu
+      group: sgrosu
+      mode: 0755
+    become: yes
+  - name: copy mysql repo rpm to server
+    copy:
+      src: kit/mysql_repo.rpm
+      dest: /home/sgrosu/kit/
+      owner: sgrosu
+      group: sgrosu
+      mode: 0644
+  - name: install mysql rpm repo
+    yum:
+      name: home/sgrosu/kit/mysql_repo.rpm
+      state: present
+    become: yes
+  #- name: update yum
+  #  command: yum update
+  #  become: yes
+  - name: install mysql server
+    yum:
+      name: mysql-server
+      state: present
+    become: yes
+  - name: start mysqld server
+    service:
+      name: mysqld
+      state: started
+      enabled: yes
+    become: yes

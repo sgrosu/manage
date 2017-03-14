@@ -1,0 +1,15 @@
+---
+- hosts: ubuntu
+  remote_user: sgrosu
+  tasks:
+  - name: install mysql server
+    apt:
+      name: mysql-server
+      state: present
+    become: yes
+  - name: start mysqld server
+    service:
+      name: mysql
+      state: started
+      enabled: yes
+    become: yes
