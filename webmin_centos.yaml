@@ -1,0 +1,33 @@
+---
+- hosts: centos
+  tasks:
+  - name: make sure kit directory exists
+    file:
+      path: /home/sgrosu/kit
+      state: directory
+      owner: sgrosu
+      group: sgrosu
+      mode: 0755
+    become: yes
+  - name: copy webmin key to the server
+    copy:
+      src: kit/jcameron-key.asc
+      dest: /home/sgrosu/kit/
+      owner: sgrosu
+      group: sgrosu
+      mode: 0644
+  - name: copy webmin rpm to the server
+    copy:
+      src: kit/webmin-current.rpm
+      dest: /home/sgrosu/kit
+      owner: sgrosu
+      group: sgrosu
+      mode: 0644
+  - name: import rpm key
+    command: rpm --import /home/sgrosu/kit/jcameron-key.asc
+    become: yes
+  - name: install webmin
+    yum:
+      name: /home/sgrosu/kit/webmin-current.rpm
+      state: present
+    become: yes
