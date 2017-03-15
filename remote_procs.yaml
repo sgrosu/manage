@@ -1,0 +1,16 @@
+---
+- hosts: 172.25.164.200
+  remote_user: sgrosu
+  tasks:
+  - name: count processes running on remote system
+    shell: ps x 
+    register: remote_num
+  - name: print remote running processes
+    debug:
+      msg: '{{ remote_num.stdout }}'
+  - name: Count processes running on local system
+    local_action: shell ps x 
+    register: local_num
+  - name: print local running processes
+    debug:
+      msg: '{{ local_num.stdout }}'
