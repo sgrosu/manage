@@ -13,3 +13,26 @@
       state: started
       enabled: yes
     become: yes
+  - name: Install required software
+    apt: name={{ item }} state=present
+    with_items:
+      - python-dev
+      - libmysqlclient-dev
+      - python-mysqldb
+    become: yes
+  #- name: Check if root pass is blank
+  #  shell: mysql -u root -e ";"
+  #  register: blank_root_pass
+  #  failed_when: false
+  #- name: update mysql root password for all root accounts
+  #    shell: mysql -u root -e "SET PASSWORD FOR 'root'@'{{ item }}' = '*94BDCEBE19083CE2A1F959FD02F964C7AF4CFC29';"
+  #    when: 'blank_root_pass.stderr==""'
+  - name: Create deploy user for mysql
+    mysql_user: 
+      login_user: root
+      login_pasword: ""
+      user: deploy
+      host: localhost
+      password: Astoreth1 
+      priv: "*.*:ALL,GRANT"
+    become: yes
