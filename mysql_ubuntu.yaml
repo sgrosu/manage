@@ -33,6 +33,6 @@
       login_pasword: ""
       user: deploy
       host: localhost
-      password: Astoreth1 
+      password: ''
       priv: "*.*:ALL,GRANT"
     become: yes
